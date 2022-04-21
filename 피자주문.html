@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>피자 주문하기</h1>
+    <hr />
+    <form action="form1.pnp">
+
+    고객 명: <input type="text"><br>
+    전화번호: <input type="text"><br>
+    E-mail: <input type="text"><br>
+    <select name="Kinds" id="Kinds">
+        <option value="선택해주세요">선택해주세요</option>
+        <option value="불고기 피자">불고기 피자</option>
+        <option value="시카고 피자">시카고 피자</option>
+        <option value="하와이안 피자">하와이안 피자</option>
+        <option value="코리아 피자">코리아 피자</option>
+    </select>
+
+    <fieldset style="width: 300px;">
+        <legend>피자 사이즈</legend>
+        <input type="radio" name="Pizzas" value="Small">Small <p>
+        <input type="radio" name="Pizzas" value="Middle">Middle <p>
+        <input type="radio" name="Pizzas" value="Large">Large <p>
+        
+    </fieldset>
+
+    <fieldset style="width: 300px;">
+        <legend>토핑 선택</legend>
+        <input type="checkbox" name="topping" value="베이컨">베이컨<p>
+        <input type="checkbox" name="topping" value="치즈">치즈<p>
+        <input type="checkbox" name="topping" value="양파">양파<p>
+        <input type="checkbox" name="topping" value="버섯">버섯<p>
+    </fieldset>
+
+    희망배송시간 <input type="time" name="희망배송시간"><p>
+    </p>
+    배송시 요청사항: <textarea name="self" id cols="20" rows="5"></textarea><p>
+
+        <input type="submit" value="주문하기"><input type="reset" value="다시 선택하기">
+</form>
+</body>
+</html>
