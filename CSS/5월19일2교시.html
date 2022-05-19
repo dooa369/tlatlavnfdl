@@ -15,30 +15,33 @@
         .main {
             background-color: aliceblue;
         }
-        span {
+        p>strong {
             background-color: yellow;
-        }
-        ul {
-            background-color: pink;
-        }
-        .red {
-            color: blue;
-        }
-        #liyellow {
-            color: green;
         }
         .pred {
             color: red;
+        }
+        #ulpink {
+            background: pink;
+        }
+        span {
+            color: green;
+        }
+        ul strong {
+            color: blue;
+        }
+        li:hover {
+            background-color: yellowgreen;
         }
     </style>
 </head>
 <body class="main">
     <h3> Web Programming</h3>
     <hr>
-    <p>2학기 <span><strong>학습 내용</strong></span>입니다.</p>
+    <p>2학기 <strong>학습 내용</strong>입니다.</p>
     <ul id="ulpink">
-        <li class="red" id="liyellow">HTML5</li>
-        <li class="red"><strong>CSS</strong></li>
+        <li><span>HTML5</span></li>
+        <li><strong>CSS</strong></li>
         <li>JavaScript</li>
     </ul>
     <p class="pred">60점 이하는 F!</p>
