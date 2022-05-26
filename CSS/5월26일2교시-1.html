@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<br lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>박스에 그림자 만들기</title>
+    <style>
+        .dog {
+            width: 250px;
+            height: 155px;
+            padding: 10px;
+            margin: 20px;
+            background-image: url(../image/dog.jpg);
+            border: 10px solid lightblue;
+            background-size: 284px 177px;
+            background-repeat: no-repeat;
+        }
+        #dog1 {
+            box-shadow: 10px 10px red;
+        }
+        #dog2 {
+            box-shadow: 10px 10px 5px skyblue;
+        }
+        #dog3 {
+            box-shadow: 2px 2px 2px black,0 0 25px blue,0 0 5px darkblue;
+        }
+        div {
+            cursor: pointer;
+            border: 1px solid red;
+        }
+        span {
+            border: 1px solid blue;
+            display: block;
+        }
+        #none {
+            display: none;
+        }
+        #bin {
+            display: inline;
+        }
+        #binb {
+            display: inline-block;
+            height: 50px;
+            width: 500px;
+        }
+        #binb2 {
+            display: block;
+        }
+    </style>
+</head>
+<br>
+    <h3>박스에 그립자 만들기</h3>
+    <hr>
+    <div class="dog" id="dog1">강아지 사진</div>
+    <div class="dog" id="dog2">강아지 사진</div>
+    <div class="dog" id="dog3">강아지 사진</div>
+    <div id="cursor">커서 모양</div>
+    <div>커서 모양2</div>
+    <span>커서 모양</span>
+    <span>커서 모양2</span>
+    <br>나는 <div id="none">div(none)</div> 입니다. </br>
+    <br>나는 <div id="bin">div(inline)</div> 입니다. </br>
+    <br>나는 <div id="binb">div(inline-block) </div>입니다. </br>
+    <br>나는 <div id="binb2">div <span>span(block)</span></div> 입니다. </br>
+</body> 
+</html>

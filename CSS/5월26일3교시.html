@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>위치정하기</title>
+    <style>
+        div {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            background-color: red;
+            text-align: center;
+            padding-top: 20px;
+        }
+        #relH:hover {
+            position: relative;
+            top: 20px;
+            left: 20px;
+            background-color: green;
+            cursor: pointer;
+            
+        }
+        #relK:hover {
+            position: relative;
+            bottom: 20px;
+            left: 20px;
+            background-color: green;
+            cursor: pointer;
+        }
+        p{
+            width: 15em;
+            height: 4em;
+            border: 1px solid lightgray;
+        }
+        #hi {
+            overflow: hidden;
+        }
+        #vi {
+            overflow: visible
+        }
+        #sc {
+            overflow: scroll
+        }
+    </style>
+</head>
+<body>
+    <div>T</div>
+    <div id="relH">H</div>
+    <div>A</div>
+    <div>N</div>
+    <div id="relK">K</div>
+    <div>S</div>
+
+    <hr>
+    <h3>overflow</h3>
+    <hr>
+    <p id="hi">overflow에 hibben 값을 적용하면 바스를 넘어가는 내용이 잘려 보이지 않습니다.</p>
+    <p id="vi">overflow에 visible 값을 적용하면 콘텐트가 박스를 넘어가서도 출력됩니다.</p>
+    <p id="sc">overflow에 scroll 값을 적용하면 콘텐프가 박스를 넘어가서도 출력됩니다.</p>
+</body>
+</html>
