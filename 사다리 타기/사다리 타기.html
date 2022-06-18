@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>사다리 타기</title>
+    <style>
+        h1 {
+            color: red;
+        }
+        span {
+            color: blue;
+        }
+        canvas {
+            width: 580px; height: 320px;
+            display: block;
+            border: 1px solid rgb(230, 243, 255);
+            width: 580px; height: 320px;
+            border-radius: 3px;
+            box-shadow: 0px 0px 30px 0px #e7e7e7 inset;
+            text-align: center;
+            margin: 0px auto;
+            background-image: url(./image/사다리\ 설정123.png);
+        }
+    </style>
+</head>
+<body>
+    <h1>사다리 <span>타기</span></h1>
+    <hr/>
+    <table>
+        <th><a href="../index.html">뒤로가기</a></th>
+    </table>
+    <select onchange="if(this.value) location.href=(this.value)">
+    <option value="1">입력</option>
+    <option value="./사다리 타기2개/사다리 타기2개.html">2</option>
+    <option value="./사다리 타기3개/사다리 타기3개.html">3</option>
+    <option value="./사다리 타기4개/사다리 타기4개.html">4</option>
+    <option value="./사다리 타기5개/사다리 타기5개.html">5</option>
+    <option value="./사다리 타기6개/사다리 타기6개.html">6</option>
+    </select>
+    <canvas></canvas>
+</body>
+</html>

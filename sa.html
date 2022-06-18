@@ -1,0 +1,414 @@
+<div class="post-body entry-content float-container" id="post-body-8793561983957272880">
+    <style type="text/css">
+     .cl_name { position:absolute; visibility:hidden; width:43px; height:22px; border:1px solid #dddddd; font-size:12px; font-family:굴림; font-weight:bold; text-align:center; letter-spacing:0px; }
+     .cl_cond { position:absolute; visibility:hidden; width:43px; height:22px; border:1px solid #dddddd; font-size:12px; font-family:돋움; font-weight:bold; text-align:center; letter-spacing:0px; }
+     .cl_junbi { position:absolute; visibility:hidden; height:22px; font-size:9pt; font-family:arial;  }
+     .cl_garim { position:absolute; box-sizing:border-box; border:1px solid #ffffff; width:100px; height:300px;  background-color:#ffffff; visibility:hidden; }
+     body { overscroll-behavior:contain; }
+    </style>
+    
+    <br>
+    <select id="id_howmany" class="cl_junbi" style="padding: 2px; top: 87px; left: 146px; visibility: visible;">
+     <option value="1" selected="">인원
+     </option><option value="2">2
+     </option><option value="3">3
+     </option><option value="4">4
+     </option><option value="5">5
+     </option><option value="6">6
+     </option><option value="7">7
+     </option><option value="8">8
+     </option><option value="9">9
+     </option><option value="10">10
+    </option></select>
+    <input type="button" id="id_ok" class="cl_junbi" value="OK" style="top: 87px; left: 199px; visibility: visible;">
+    <input type="button" id="id_again" class="cl_junbi" value="다시" style="top: 87px; left: 146px;">
+    <span id="id_alrim" class="cl_junbi" style="top: 89px; left: 249px; visibility: visible;"></span>
+    <div class="cl_garim" id="id_garimL"></div>
+    <div class="cl_garim" id="id_garimR"></div>
+    
+    <div class="cl_inputs">
+    <input type="text" class="cl_name" id="id_lineup0" style="visibility: visible; left: 332px; top: 114px;">
+    <input type="text" class="cl_name" id="id_lineup1" style="visibility: visible; left: 382px; top: 114px;">
+    <input type="text" class="cl_name" id="id_lineup2" style="visibility: visible; left: 432px; top: 114px;">
+    <input type="text" class="cl_name" id="id_lineup3" style="visibility: hidden;">
+    <input type="text" class="cl_name" id="id_lineup4" style="visibility: hidden;">
+    <input type="text" class="cl_name" id="id_lineup5" style="visibility: hidden;">
+    <input type="text" class="cl_name" id="id_lineup6" style="visibility: hidden;">
+    <input type="text" class="cl_name" id="id_lineup7" style="visibility: hidden;">
+    <input type="text" class="cl_name" id="id_lineup8" style="visibility: hidden;">
+    <input type="text" class="cl_name" id="id_lineup9" style="visibility: hidden;">
+    
+    <input type="text" class="cl_cond" id="id_target0" style="visibility: visible; left: 332px; top: 391px;">
+    <input type="text" class="cl_cond" id="id_target1" style="visibility: visible; left: 382px; top: 391px;">
+    <input type="text" class="cl_cond" id="id_target2" style="visibility: visible; left: 432px; top: 391px;">
+    <input type="text" class="cl_cond" id="id_target3" style="visibility: hidden;">
+    <input type="text" class="cl_cond" id="id_target4" style="visibility: hidden;">
+    <input type="text" class="cl_cond" id="id_target5" style="visibility: hidden;">
+    <input type="text" class="cl_cond" id="id_target6" style="visibility: hidden;">
+    <input type="text" class="cl_cond" id="id_target7" style="visibility: hidden;">
+    <input type="text" class="cl_cond" id="id_target8" style="visibility: hidden;">
+    <input type="text" class="cl_cond" id="id_target9" style="visibility: hidden;">
+    </div>
+    
+    <canvas id="canvas" width="520" height="300" style="display:block; border:1px solid #ffffff; height:300; width:520;  border-radius:3px; box-shadow:0px 0px 30px 0px #e7e7e7 inset; text-align center; margin:0px auto;"></canvas>
+     
+    <script>
+    
+    function Work(){
+     this.numY= 0;
+     this.numX= 0;
+     this.garoCount= 0;
+     this.garoX=0;
+     this.garoY=0;  
+     this.garoOn= false;
+     this.timerId= null;
+     this.numSac= 0; 
+     this.numMadi= 25;
+     this.numJungX= 0;
+     this.evName= [];
+    }
+    
+    Work.prototype.sdTaki= function(inBunho){
+     myWork.numX= inBunho; 
+     myWork.numSac= inBunho;
+     var numHeight= 10, yStart= 20;
+         var numXy= 0;
+         var arrColor= ['#ff0000','#0000ff', '#00ee00', '#333333', '#ff00ff', '#00eeee', '#eeee00', '#ffbb66', '#66ffbb', '#bb66ff'];
+         let [numX, numY, garoX, garoY, numMadi]= [this.numX, this.numY, this.garoX, this.garoY, this.numMadi]; 
+         let [garoCount, garoOn, numSac, numJungX]= [this.garoCount, this.garoOn, this.numSac, this.numJungX];
+         
+     //clearInterval(this.timerId);
+     //this.loop_sadari();
+     this.timerId= setInterval(() => {
+        if(canFrame.getContext) {
+           var ctx = canFrame.getContext('2d');
+           ctx.beginPath();
+      
+           if(arrSadari[numX*numMadi+numY]== 0 || garoOn== true){
+              ctx.moveTo(50*numX+numJungX+22, numY*numHeight+20);
+              numY++; //numXy++;
+              if(numY== numMadi)
+               yStart= 25;
+              ctx.lineTo(50*numX+numJungX+22, numY*numHeight+yStart);
+              if(garoOn== true)
+                garoOn= false;    
+          }else{
+              if(garoCount== 0){
+              numXy= numX*numMadi+numY;
+              garoX= arrSadari[numXy]==1 ? 50: -50;
+              garoY= ((numY- arrPair[numXy]%numMadi)*-1)* 10;
+              }
+              ctx.moveTo(50*numX+ garoX*(garoCount/5)+numJungX+22, numY*numHeight+ garoY*(garoCount/5)+20);
+              garoCount++;
+              ctx.lineTo(50*numX+ garoX*(garoCount/5)+ numJungX+22, numY*numHeight+ garoY*(garoCount/5)+20);
+      
+             if(garoCount== 5){
+              numXy= numX*numMadi+numY;
+              numX= numX+ arrSadari[numXy]; 
+               numY= arrPair[numXy]% numMadi;
+              garoOn= true;
+              garoCount= 0;
+              }
+          }  //else
+             //ctx.closePath();
+          ctx.lineWidth= 3;
+              ctx.strokeStyle = arrColor[numSac];
+             ctx.stroke(); 
+    
+          if(numY>= numMadi){
+              clearInterval(this.timerId);
+              this.timerId= null;
+              numY= 0; numX= 0;
+             garoOn= false;
+            //condS[(numX- numJungX)/20].style.borderColor= arrColor[inBuho];
+         }  //i
+         }//if(canFrame
+     }, 120);
+    }
+    
+    Work.prototype.inputAt= function(xAt){
+     let numInwon= selHowmany.value;
+     
+     if(numInwon== 1)
+      return false;
+    
+     for(let i=0; i<10; i++){
+     nameS[i].style.visibility= 'hidden'; 
+     condS[i].style.visibility= 'hidden'; 
+     }
+    
+     for(let i=0; i<numInwon; i++){
+     nameS[i].style.left= canFrame.offsetLeft+ xAt+ (50*i)+ 'px';
+     nameS[i].style.top= canFrame.offsetTop+ 'px';
+     nameS[i].style.visibility= 'visible';
+     condS[i].style.left= canFrame.offsetLeft+ xAt+ (50*i)+ 'px';
+     condS[i].style.top= canFrame.offsetTop+ canFrame.clientHeight- 23+ 'px';
+     condS[i].style.visibility= 'visible';
+     }     
+    }
+    
+    Work.prototype.insu= () => { 
+     let numHow;  
+     let numJungX;
+     let  numPok= canFrame.clientWidth;
+    
+     (myJunbi.blnMobile) && (numPok= screen.width); 
+     (selHowmany.value== 1) && (selHowmany.selectedIndex= 1); 
+     numHow= selHowmany.value;  
+     spanHelp.textContent= "";
+     numJungX= (numPok-numHow*40- (numHow-1)*10)/2- 2; 
+     //if(myJunbi.blnMobile== true)
+     //{ numJungX=  numHow<7 ? 45: 10; }
+     myWork.numJungX= numJungX;
+     //divGarimL.style.visibility= selHowmany.value<=3 ? 'visible': 'hidden';
+    
+     myWork.inputAt(numJungX);
+     //myWork.draw();
+     
+     if(canFrame.getContext) {
+      var ctx = canFrame.getContext('2d');
+      ctx.clearRect(0, 0, 520, 300); //alert(numJungX);
+    
+     ctx.beginPath();
+     for(i=0; i<numHow; i++){   
+      ctx.moveTo(50*i+numJungX+22, 20);
+      ctx.lineTo(50*i+numJungX+22, (myWork.numMadi)*10+20+5);
+     }
+     //ctx.closePath();
+       ctx.lineWidth= 1;
+       ctx.strokeStyle = "rgb(220, 220, 220)";
+       ctx.stroke(); 
+     } 
+    }
+    
+    Work.prototype.sdMake= function(){
+     var numPick, numLeft, numSadari, numLean= 0;
+     var i, j, k, temp= 0;
+     let numMadi= this.numMadi;
+     let arrCross= [];
+    
+     for(i=0; i<selHowmany.value-1; i++){
+         numSadari= 0;
+         numLeft= 0;
+         while(numSadari< numMadi){ 
+           numPick= Math.floor(Math.random()*6)+2; 	
+          if(i>=1 && numSadari+numPick< numMadi)  {
+             j=  i*numMadi+ numSadari;; 
+              while(arrSadari[j+ numPick] != 0){
+               numPick= Math.floor(Math.random()*6)+2;
+              // if(numSadari+ numPick>= numMadi)	{  break; }
+               } //
+          } //if
+    
+         numSadari+= numPick; 
+          j= i*numMadi+ numSadari;
+          if(numSadari< numMadi){
+           //arrSwapCross[numLeft]= j; 
+            arrSadari[j]= 1;
+            arrSadari[j+numMadi]= -1;
+           arrPair[j]= j+ numMadi;
+            arrPair[j+numMadi]= j;
+           arrCross[numLeft]= j; 
+            numLeft++; 
+           (numSadari== numMadi-1) && (numSadari++);
+           }  //if
+         
+         if(numSadari>= numMadi) {   //기울기
+               for(k=0; k<numLeft; k++){
+                 numPick= Math.floor(Math.random()*9);
+                 if(numPick%4 == 2){
+                    do{
+                      numPick= Math.floor(Math.random()*6)+ 2;
+                      numLean= arrCross[k]%numMadi< 12 ? arrCross[k]+numPick: arrCross[k]-numPick;
+                    }while(arrSadari[numLean+numMadi]!= 0);
+    
+                    arrSadari[numLean+numMadi]= -1;
+                    arrSadari[arrCross[k]+numMadi]= 0;
+                    arrPair[arrCross[k]]= numMadi+ numLean;
+                    arrPair[numLean+numMadi]= arrCross[k];
+                    arrPair[arrCross[k]+numMadi]= 0;
+                 }//if
+                } //for
+                break;
+           }  //if 
+        }//while			
+     } //for(i=
+     
+      if(canFrame.getContext) {
+          var ctx = canFrame.getContext('2d');
+         ctx.beginPath();
+         for(i=0; i<selHowmany.value-1; i++){
+          for(j=0; j<numMadi; j++){
+               if(arrSadari[i*numMadi+j]== 1){   //ctx.moveTo(50*i+ this.numJungX+ 22, (arrCross[k]%25)* 10+ 20);
+                 ctx.moveTo(50*i+this.numJungX+ 22, 10*j+ 20);
+                 ctx.lineTo((i+1)*50+this.numJungX+22, 10*(arrPair[i*numMadi+j]%numMadi)+20);
+              }
+           } 
+        } //for(i
+     
+           //ctx.closePath();
+         ctx.lineWidth= 1;
+             ctx.strokeStyle = "rgb(200, 200, 200)";
+             ctx.stroke(); 
+     }  
+      butAgain.style.visibility= 'visible';
+    }
+    
+    Work.prototype.play= () => {  
+     if(selHowmany.value== 1){
+     spanHelp.textContent= "참여 수효를 선택하시오";
+     selHowmany.selectedIndex= 0;
+     return false;
+     }
+    
+     for(let i=0; i<selHowmany.value; i++){
+      nameS[i].value= nameS[i].value.replace(/ /gi, ""); 
+      condS[i].value= condS[i].value.replace(/ /gi, ""); 
+     
+      if(nameS[i].value=="" || condS[i].value==""){
+       spanHelp.textContent= "입력 오류! 빈칸에 입력하시오.";
+       return false;
+      }
+     } //for
+    
+     selHowmany.style.visibility= 'hidden';
+     butOk.style.visibility= 'hidden';
+     butOk.disabled= true;
+     spanHelp.textContent= "";  
+     
+     myWork.sdMake();
+     for(let i=0; i<selHowmany.value; i++) {
+        nameS[i].style.cursor= 'pointer'; 
+        //nameS.forEach((name, index) => {
+        myWork.evName[i]= (event) => {
+          if(myWork.timerId!= null)
+           {	return false; }
+            myWork.sdTaki(i);
+            nameS[i].disabled= true;
+           nameS[i].style.cursor= 'text';
+           nameS[i].style.backgroundColor= '#f6f6f6';
+          }
+         nameS[i].addEventListener('mouseup', myWork.evName[i])
+     } 
+    }
+    
+    Work.prototype.again= () => {
+     if(myWork.timerId!= null)
+     { return false; }
+     
+     if(canFrame.getContext) {
+      var ctx = canFrame.getContext('2d');
+      ctx.clearRect(0, 0, 520, 300);
+     }
+     //divGarimL.style.visibility= 'hidden';
+     //divGarimR.style.visibility= 'hidden';
+     
+     for(var i=0; i<10; i++) { 
+     if(i< selHowmany.value)
+     { nameS[i].removeEventListener('mouseup', myWork.evName[i]);  }
+     nameS[i].disabled= false;  
+     nameS[i].style.cursor= 'text';
+      nameS[i].style.backgroundColor= '#ffffff';
+     nameS[i].style.visibility= 'hidden';
+     condS[i].style.visibility= 'hidden';
+     }
+     butAgain.style.visibility= 'hidden'; 
+     myJunbi.data_reset();
+    }  
+    
+    
+    function Sadari() { 
+     canFrame= document.querySelector('#canvas');
+     selHowmany= document.querySelector('#id_howmany');
+     butOk= document.querySelector('#id_ok');
+     butAgain= document.querySelector('#id_again');
+     spanHelp= document.querySelector('#id_alrim');
+     //divGarimL= document.querySelector('#id_garimL');
+    // divGarimR= document.querySelector('#id_garimR');
+     inputS= document.querySelectorAll('.cl_inputs input');
+     nameS= document.querySelectorAll('.cl_name');
+     condS= document.querySelectorAll('.cl_cond'); 
+    
+     this.blnMobile= false;
+    }
+    
+    Sadari.prototype.menuAt= function(){
+     selHowmany.style.top=  canFrame.offsetTop- 27+'px';
+     selHowmany.style.left=  canFrame.offsetLeft+2+'px'; 
+     butOk.style.top=  canFrame.offsetTop -27+'px';
+     butOk.style.left=  canFrame.offsetLeft+ selHowmany.clientWidth+ 5+'px'; 
+     butAgain.style.top=  canFrame.offsetTop -27+'px';
+     if(this.blnMobile== true)
+     { butAgain.style.top=  canFrame.offsetTop -35+'px';  }
+     butAgain.style.left=  canFrame.offsetLeft + 2+'px'; 
+     spanHelp.style.top=  canFrame.offsetTop- 25+'px';
+     spanHelp.style.left=  butOk.offsetLeft +50+'px';  
+    
+     /*divGarimL.style.top= canFrame.offsetTop +'px';
+     divGarimL.style.left= canFrame.offsetLeft+'px'; 
+     divGarimR.style.top= canFrame.offsetTop +'px';
+     divGarimR.style.left= canFrame.offsetLeft+ 422 +'px'; */
+    }
+    window.addEventListener('resize',() => {
+      myJunbi.menuAt();
+      myWork.inputAt(myWork.numJungX);
+    });
+    
+    let arrSadari= [];
+    let arrPair= [];
+    Sadari.prototype.data_reset= function(){
+     let numInsu= 0;
+     selHowmany.style.visibility= 'visible';
+     butOk.style.visibility= 'visible';
+     butOk.disabled= false;
+     spanHelp.style.visibility= 'visible';
+     spanHelp.contentText= "";
+    
+     numInsu= selHowmany.value<=1 ? 10: selHowmany.value;
+     selHowmany.selectedIndex= 0;
+    
+     inputS.forEach((name) => {
+      name.value= "";
+     });
+    
+     for(let  i=0; i<numInsu*25; i++){
+       arrSadari[i]= 0;
+       arrPair[i]= 0;
+     }
+    } 
+    
+    Sadari.prototype.init_set= function(){
+     var agent = navigator.userAgent.toLowerCase();
+     if((navigator.appName == 'Netscape' && navigator.userAgent.search('Trident') != -1) || (agent.indexOf("msie") != -1)) 
+     { alert("익스플로러 대신에 엣지, 크롬 등을 권장합니다."); }
+     if( navigator.platform){
+      if("win16|win32|win64|mac|macintel".indexOf(navigator.platform.toLowerCase())<0 )
+      { this.blnMobile= true; }
+     }
+    
+     this.menuAt();
+     selHowmany.addEventListener('change',  myWork.insu);
+      butOk.addEventListener('mouseup', myWork.play);  
+     butAgain.addEventListener('mouseup', myWork.again);  
+    
+      inputS.forEach((input, index) => {
+        input.style.visibility= 'hidden'; 	
+        input.addEventListener('focus',() => {
+          if(spanHelp.textContent!= "")
+              spanHelp.textContent= "";
+           if(butOk.disabled== true)
+               input.blur();  
+         }); 
+     });
+    }
+    
+     let myJunbi= new Sadari();
+    let myWork= new Work();
+    
+    document.addEventListener('DOMContentLoaded',() => {
+     myJunbi.init_set(); 
+     myJunbi.data_reset();
+    });
+    
+     </script>
+    </div>
